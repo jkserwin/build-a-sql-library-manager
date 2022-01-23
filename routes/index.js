@@ -78,8 +78,14 @@ router.post('/books/:id', asyncHandler(async (req, res) => {
 }));
 
 /* POST delete book listing. */
-router.post('/books/:id/delete', asyncHandler(async (req, res) => {
-  
+router.post('/books/:id', asyncHandler(async (req, res) => {
+  const book = await Book.findByPk(req.params.id);
+  if (book) {
+    await book.destroy();
+    res.redirect("/books");
+  } else {
+    res.sendStatus(404);
+  }
 }));
 
 module.exports = router;
