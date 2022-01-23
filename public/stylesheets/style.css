@@ -4,5 +4,37 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+}
+
+.button {
+  color: white;
+  background-color: #009875;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.title {
+  color: #009875;
+}
+
+table {
+  margin-top: 10px;
+}
+
+td {
+  padding: 7px;
+}
+
+tr:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+th {
+  background-color: white;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1.5px solid goldenrod;
+  padding-left: 7px;
+  padding-bottom: 3px;
 }

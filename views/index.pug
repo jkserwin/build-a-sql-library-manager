@@ -11,9 +11,9 @@ block content
       th Genre
       th Year
     each book in books 
-      tr 
+      tr
         td
-          a(href=`/books/${book.id}`)= book.title 
+          a(class='title' href=`/books/${book.id}`)= book.title 
         td= book.author
         td= book.genre
         td= book.year
