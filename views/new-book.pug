@@ -1,7 +1,10 @@
 extends layout 
 
 block content 
-  h1 New Book 
+  h1 New Book
+
+  include errors
+
   form(action="/", method="POST")
     p 
       label(for="title") Title 

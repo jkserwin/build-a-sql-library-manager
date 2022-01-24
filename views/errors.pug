@@ -1,0 +1,6 @@
+if(errors)
+  h2.errors An error occurred while making your request: 
+  ul.errors
+    each error in errors 
+      li 
+        =error.message
