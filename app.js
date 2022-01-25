@@ -33,24 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// 404 error handler
 
-app.use((req, res, next) => {
-  const err = new Error('Error 404: Page not found');
-  err.status = 404;
-  res.render('page-not-found', {err, title: "Page Not Found"});
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  // res.message(err.message || 'Sorry! There was an unexpected error on the server.');
-  res.render('error', { err, title: "Server Error"});
-});
 
 module.exports = app;

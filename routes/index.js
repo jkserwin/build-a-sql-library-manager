@@ -40,7 +40,7 @@ router.post('/', asyncHandler(async (req, res) => {
       book = await Book.build(req.body);
       res.render("new-book", { book, errors: error.errors, title: "New Book" })
     } else {
-      throw error;
+      next(error);
     }
   }
 }));
@@ -64,7 +64,7 @@ router.post('/books/:id', asyncHandler(async (req, res) => {
       await book.update(req.body);
       res.redirect('/books');
     } else {
-      res.sendStatus(404);
+      next(createError(404));
     }
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
@@ -82,10 +82,28 @@ router.post('/books/:id/delete', asyncHandler(async (req, res) => {
   const book = await Book.findByPk(req.params.id);
   if (book) {
     await book.destroy();
-    res.redirect('/books');
+    res.redirect('/');
   } else {
     res.sendStatus(404);
   }
 }));
+
+// 404 error handler
+
+router.use((req, res, next) => {
+  const err = new Error('Error 404: Page not found');
+  err.status = 404;
+  res.render('page-not-found', {err, title: "Page Not Found"});
+});
+
+// error handler
+router.use(function(err, req, res, next) {
+  if (err.status === 404) {
+    res.render('page-not-found', {err, title: "Page Not Found"});
+  } else {
+    res.status(err.status || 500);
+    res.render('error', { err, title: "Server Error"});
+  }
+});
 
 module.exports = router;
