@@ -16,10 +16,12 @@ a {
   background-color: #009875;
   padding: 10px;
   border-radius: 2px;
+  margin-left: 132px;
 }
 
 #newbook {
   margin-bottom: 20px;
+  margin-left: 0px;
 }
 
 table {
@@ -47,3 +49,19 @@ th {
   padding-bottom: 3px;
 }
 
+form p {
+  display: flex;
+  flex-direction: row;
+  max-width: 400px;
+}
+
+label {
+  width: auto;
+  flex-basis: 33%;
+  font-weight: 600;
+}
+
+input[type=text] {
+  width: auto;
+  flex-basis: 66%;
+}
